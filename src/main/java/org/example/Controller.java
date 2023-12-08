@@ -1,41 +1,19 @@
 package org.example;
 
-
 import models.*;
 import org.springframework.web.bind.annotation.*;
+import java.util.*;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/bookstore")
 public class Controller {
+    List<String> books = Arrays.asList("Sherlock Holmes", "Arsene Lupin", "Code da Vinci");
 
-    private final String sharedKey = "SHARED_KEY";
-
-    private static final String SUCCESS_STATUS = "success";
-    private static final String ERROR_STATUS = "error";
-    private static final int CODE_SUCCESS = 100;
-    private static final int AUTH_FAILURE = 102;
-
-    @GetMapping
-    public BaseResponse showStatus() {
-        return new BaseResponse(SUCCESS_STATUS, 1);
+    @GetMapping()
+    public BookList bookList(){
+        return new BookList(books);
     }
 
-    @PostMapping("/pay")
-    public BaseResponse pay(@RequestParam(value = "key") String key, @RequestBody PaymentRequest request) {
+    //@PostMapping("/postNewBook")
 
-        final BaseResponse response;
-
-        if (sharedKey.equalsIgnoreCase(key)) {
-            int userId = request.getUserId();
-            String itemId = request.getItemId();
-            double discount = request.getDiscount();
-            // Process the request
-            // ....
-            // Return success response to the client.
-            response = new BaseResponse(SUCCESS_STATUS, CODE_SUCCESS);
-        } else {
-            response = new BaseResponse(ERROR_STATUS, AUTH_FAILURE);
-        }
-        return response;
-    }
 }
