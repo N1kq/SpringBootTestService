@@ -25,4 +25,12 @@ public class Controller {
     public void delById(@PathVariable("id")int id){
         books.remove(id);
     }
+
+    @PutMapping("/changeBook/{id}")
+    void change(@PathVariable int id, @RequestBody String newname){
+        System.out.println(books.get(id));
+        books.remove(id);
+        books.add(id,newname);
+        System.out.println(books.get(id));
+    }
 }
