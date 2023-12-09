@@ -15,8 +15,8 @@ public class Controller {
         return new BookList(books);
     }
 
-    @PostMapping("/NewBook")
-    public String newBook(@RequestParam(value = "book") String book){
+    @PostMapping("/AddBook")
+    public String newBook(@RequestBody String book){
         books.add(book);
         return "New book added successfully";
     }
