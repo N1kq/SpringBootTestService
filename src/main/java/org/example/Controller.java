@@ -21,4 +21,8 @@ public class Controller {
         return "New book added successfully";
     }
 
+    @DeleteMapping("/DeleteBook/{id}")
+    public void delById(@PathVariable("id")int id){
+        books.remove(id);
+    }
 }
